@@ -29,5 +29,5 @@ if submit_button:
         todo_data = pd.DataFrame([
             {"item": item, "status": status}
         ])
-    updated_df = pd.concat([existing_data, df], ignore_index=True)
+    updated_df = pd.concat([df, todo_data], ignore_index=True)
     conn.update(workshheet="todo", data=updated_df)
