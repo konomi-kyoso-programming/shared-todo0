@@ -9,13 +9,25 @@ df = conn.read(worksheet="todo", ttl=5)
 
 st.dataframe(df)
 
+
+
 STATUS = ["DONE", "TO DO", "IN PROGRESS"]
 
 with st.form(key="todo_form"):
     item = st.text_input(label="Item*")
-    done = st.selectbox("Status", options=STATUS)
+    status = st.selectbox("Status", options=STATUS)
 
     submit_button = st.form_submit_button(label="Submit")
 
 if submit_button:
     st.write("Submission done!")
+
+    if not item:
+        st.warning("you must fill the item field.")
+        st.stop()
+    else:
+        todo_data = pd.DataFrame([
+            {"item": item, "status": status}
+        ])
+    updated_df = pd.concat([existing_data, df], ignore_index=True)
+    conn.update(workshheet="todo", data=updated_df)
