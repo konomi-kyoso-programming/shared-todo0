@@ -13,7 +13,7 @@ STATUS = ["DONE", "TO DO", "IN PROGRESS"]
 
 with st.form(key="todo_form"):
     item = st.text_input(label="Item*")
-    done = st.selectbox("Status", Options=STATUS)
+    done = st.selectbox("Status", options=STATUS)
 
     submit_button = st.form_submit_button(label="Submit")
 
