@@ -17,5 +17,5 @@ with st.form(key="todo_form"):
 
     submit_button = st.form_submit_button(label="Submit")
 
-if submit_buttion:
+if submit_button:
     st.write("Submission done!")
